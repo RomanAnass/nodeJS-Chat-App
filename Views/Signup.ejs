@@ -1,0 +1,151 @@
+<%- include('les parties/Header') -%>
+<div class="row ht-100v flex-row-reverse no-gutters">
+  <div class="col-md-6 d-flex justify-content-center align-items-center">
+      <div class="signup-form">
+          <div class="auth-logo text-center mb-5">
+              <div class="row">
+                  <div class="col-md-2">
+                      <img src="/images/logo-64x64.png" class="logo-img" alt="Logo">
+                  </div>
+                  <div class="col-md-10">
+                      <p>Argon Social Network</p>
+                      <span>Design System</span>
+                  </div>
+              </div>
+          </div>
+          <form action="/signup" method="post" class="pt-5">
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <input type="text" class="form-control" name="firstName" placeholder="First Name">
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <input type="text" class="form-control" name="lastName" placeholder="Last Name">
+                      </div>
+                  </div>
+                  <div class="col-md-12">
+                      <div class="form-group">
+                          <input type="text" class="form-control" name="emailAddress" placeholder="Email Address">
+                      </div>
+                  </div>
+                  <div class="col-md-12">
+                      <div class="form-group">
+                          <input type="text" class="form-control" name="phoneNumber" placeholder="Phone Number">
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="form-group">
+                          <select name="day" id="" class="form-control">
+                              <option value="">- Select Day -</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                              <option value="9">9</option>
+                              <option value="10">10</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="form-group">
+                          <select name="month" id="" class="form-control">
+                              <option value="">- Select Month -</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                              <option value="9">9</option>
+                              <option value="10">10</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="form-group">
+                          <select name="year" id="" class="form-control">
+                              <option value="">- Select Year -</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                              <option value="9">9</option>
+                              <option value="10">10</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <input type="password" class="form-control" name="password" placeholder="Password">
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password">
+                      </div>
+                  </div>
+                  <div class="col-md-12">
+                      <p class="agree-privacy">By clicking the Sign Up button below you agreed to our privacy policy and terms of use of our website.</p>
+                  </div>
+                  <div class="col-md-6">
+                      <span class="go-login">Already a member? <a href="/signin">Sign In</a></span>
+                  </div>
+                  <div class="col-md-6 text-right">
+                      <div class="form-group">
+                          <button type="submit" class="btn btn-primary sign-up">Sign Up</button>
+                      </div>
+                  </div>
+              </div>
+          </form>
+          <div class="text-center">
+            <p>or sign up with:</p>
+            <button type="button" class="btn btn-primary btn-floating mx-1">
+              <a href="/signup/auth/facebook"><i class="fab fa-facebook-f"></i></a>
+            </button>
+        
+            <button type="button" class="btn btn-primary btn-floating mx-1">
+              <a href="/signup/auth/google"><i class="fab fa-google"></i></a>
+            </button>
+        
+            <button type="button" class="btn btn-primary btn-floating mx-1">
+              <a href=""><i class="fab fa-twitter"></i></a>
+            </button>
+        
+            <button type="button" class="btn btn-primary btn-floating mx-1">
+              <a href=""><i class="fab fa-github"></i></a>
+            </button>
+          </div>
+      </div>
+  </div>
+  <div class="col-md-6 auth-bg-image d-flex justify-content-center align-items-center">
+      <div class="auth-left-content mt-5 mb-5 text-center">
+          <div class="weather-small text-white">
+              <p class="current-weather"><i class='bx bx-sun'></i> <span>14&deg;</span></p>
+              <p class="weather-city">Gyumri</p>
+          </div>
+          <div class="text-white mt-5 mb-5">
+              <h2 class="create-account mb-3">Create Account</h2>
+              <p>Enter your personal details and start journey with us.</p>
+          </div>
+          <div class="auth-quick-links">
+              <a href="#" class="btn btn-outline-primary">Purchase template</a>
+          </div>
+      </div>
+  </div>
+</div>
+
+<%- include('les parties/script') -%>
+</body>
+</html>
