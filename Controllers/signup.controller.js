@@ -18,7 +18,7 @@ passport.deserializeUser(function(obj, done) {
 
 exports.getSignup = (req,res,next)=>{
    res.render('signup',{
-    pageTitle : 'SignUp'
+    pageTitle : 'SignUp',
    }) 
 }
 
@@ -68,8 +68,16 @@ exports.postSignup = (req,res,next) =>{
         month : req.body.month,
         year : req.body.year,
         password : req.body.password,
-        confirmPassword : req.body.confirmPassword
-    });
-    
-    res.redirect('/signin')
+        confirmPassword : req.body.confirmPassword,
+        phoneNumber: req.body.phoneNumber
+    })
+    .then((result)=>{
+      console.log(result)
+      res.redirect('/signin')
+    })
+    .catch(err =>{
+      console.log(err)
+      res.redirect('/signup')
+    })
+   
 }

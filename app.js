@@ -3,6 +3,7 @@ const express = require('express');
 // Les modules préinstallé
 const path = require('path');
 const session = require('express-session')
+var MongoDBStore = require('connect-mongodb-session')(session);
 
 // propre modules
 const signin = require('./Routes/login.route');
@@ -20,17 +21,20 @@ const passport = require("passport");
 const settingsPassword = require('./Routes/setting-password.route');
 const app = express();
 const bodyParser = require('body-parser');
-
 app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname,'Assets')));
 
+const store = new MongoDBStore({
+    uri: 'mongodb://localhost:27017/nodeJS-Chat-App',
+    collection: 'Sessions'
+  });
 
 app.use(session({
     secret: 'somethingsecretgoeshere',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true }
+    store: store
  }));
 
 app.use(passport.initialize());
