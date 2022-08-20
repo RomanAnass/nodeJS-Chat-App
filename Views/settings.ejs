@@ -83,24 +83,24 @@
                             <div class="content">
                                 <div class="settings-form p-4">
                                     <h2>Your Account</h2>
-                                    <form action="" method="" class="mt-4 settings-form">
+                                    <form action="/settings" method="post" class="mt-4 settings-form">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="settingsFirstName">First Name</label>
-                                                <input type="text" class="form-control" id="settingsFirstName" placeholder="First Name">
+                                                <label for="firstName">First Name</label>
+                                                <input type="text" class="form-control" name="firstname" id="firstname" placeholder="First Name">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="settingsLastName">Last Name</label>
-                                                <input type="text" class="form-control" id="settingsLastName" placeholder="Last Name">
+                                                <label for="lastName">Last Name</label>
+                                                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Last Name">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-row mb-3 align-items-center">
                                                 <div class="col">
-                                                    <label for="settingsUsername">Username</label>
-                                                    <input type="email" class="form-control" id="settingsUsername" aria-describedby="usernameHelp" value="arthur_minasyan_96" placeholder="Username">
+                                                    <label for="username">Username</label>
+                                                    <input type="text" class="form-control" name="username" id="username" aria-describedby="usernameHelp" value="<%= username  %>" placeholder="Username">
                                                     <small id="usernameHelp" class="form-text text-muted">Your public username is the same as your timeline address.</small>
                                                 </div>
                                                 <div class="col check-username">

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const User = require('./signup.model').User;
+const User = require('./user.model').User;
 const bcrypt = require('bcrypt');
 
 const server = '127.0.0.1:27017'; 
@@ -17,7 +17,7 @@ exports.login = (data)=>{
                 mongoose.disconnect();
                 reject("user is not exist");
             }
-
+            
              bcrypt.compare(data.password,user.password).then((result)=>{
                 if(!result){
                    mongoose.disconnect();

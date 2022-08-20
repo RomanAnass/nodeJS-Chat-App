@@ -1,33 +1,11 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const validator = require('validator')
-
-const Schema = mongoose.Schema;
+const validator = require('validator');
+const User = require('./user.model').User;
 
 const server = '127.0.0.1:27017';
 const database = 'nodeJS-Chat-App';
 
-const UserSchema = new Schema({
-   firstname: String,
-   lastname: String,
-   email: {
-      type: String,
-      required: true,
-      unique: true,
-      lowercase: true,
-      validate: (value) => {
-      return validator.isEmail(value)
-      }
-   },
-   password: String,
-   phoneNumber : String,
-   photo: { type: String, default: "default-user-image.png" },
-   date_naissance : Date
-})
-
-const User = mongoose.model('Users', UserSchema);
-
-exports.User = User;
 
 exports.createNewUser = data => {
       return new Promise((resolve,reject)=> {
@@ -48,6 +26,7 @@ exports.createNewUser = data => {
             let user = new User({
                firstname: data.firstname,
                lastname: data.lastname,
+               username: data.firstname +' '+  data.lastname,
                email:  data.email,
                password: hashpassword,
                phoneNumber: data.phoneNumber,

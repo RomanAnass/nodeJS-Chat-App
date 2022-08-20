@@ -83,25 +83,25 @@
                             <div class="content">
                                 <div class="settings-form p-4">
                                     <h2>Contact Info</h2>
-                                    <form action="" method="" class="mt-4 settings-form">
+                                    <form action="/settings-contact" method="post" class="mt-4 settings-form">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="settingsAddress">Address</label>
-                                                    <input type="text" class="form-control" id="settingsAddress" placeholder="Address">
+                                                    <input type="text" class="form-control" name="address"  id="address" placeholder="Address">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="settingsPhoneNumber">Phone Number</label>
-                                                    <input type="text" class="form-control" id="settingsPhoneNumber" placeholder="Phone Number">
+                                                    <input type="text" class="form-control" name="phonenumber" id="phonenumber" placeholder="Phone Number">
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-row mb-3 align-items-center">
                                                     <div class="col">
                                                         <label for="settingsEmailAddress">Email Address</label>
-                                                        <input type="email" class="form-control" id="settingsEmailAddress" aria-describedby="emailHelp" value="emailaddress@gmail.com" placeholder="Email Address">
+                                                        <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" value="emailaddress@gmail.com" placeholder="Email Address">
                                                         <small id="emailHelp" class="form-text text-muted">Updating this email will only change where you receive notifications.</small>
                                                     </div>
                                                     <div class="col check-username">

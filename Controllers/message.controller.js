@@ -1,7 +1,13 @@
 const loginModel = require('../Models/message.modal');
 
 exports.getMessage = (req,res,next) => {
-  
-    res.render('messages',{pageTitle : 'Messages'})
-  
+    console.log(req.session)
+    res.render('messages',{
+        pageTitle : 'Messages',
+        userId: req.session.userId,
+        firstname: req.session.firstname,
+        lastname: req.session.lastname,
+        date_naissance: req.session.date_naissance,
+        photo: req.session.photo
+    }) 
 }
