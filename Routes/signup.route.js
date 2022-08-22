@@ -5,18 +5,19 @@ const route = express.Router();
 
 const signupController = require('../Controllers/signup.controller');
 const bodyParser = require('body-parser');
+const authguard = require('./guards/auth.guard');
 
-route.get('/',signupController.getSignup);
+route.get('/',authguard.noAuth,signupController.getSignup);
 
-route.post('/',bodyParser.urlencoded({extended : true}),signupController.postSignup);
+route.post('/',authguard.noAuth,bodyParser.urlencoded({extended : true}),signupController.postSignup);
 
-route.get("/auth/facebook", passport.authenticate("facebook"));
+route.get("/auth/facebook",authguard.noAuth,passport.authenticate("facebook"));
 
-route.get("/auth/facebook/callback",passport.authenticate("facebook", {successRedirect: "/",failureRedirect: "/error"}));
+route.get("/auth/facebook/callback",authguard.noAuth,passport.authenticate("facebook", {successRedirect: "/",failureRedirect: "/error"}));
       
-route.get('/auth/google',passport.authenticate('google', { scope : ['profile', 'email'] }));
+route.get('/auth/google',authguard.noAuth,passport.authenticate('google', { scope : ['profile', 'email'] }));
 
-route.get('/auth/google/callback', 
+route.get('/auth/google/callback',authguard.noAuth, 
         passport.authenticate('google', { failureRedirect: '/error' }),
         function(req, res) {
         // Successful authentication, redirect success.

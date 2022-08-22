@@ -3,9 +3,10 @@ const route = express.Router();
 
 const bodyParser = require('body-parser');
 const constactController = require('../Controllers/constact.controller');
+const authguard = require('./guards/auth.guard');
 
-route.get('/',constactController.getConstact);
+route.get('/',authguard.isAuth,constactController.getConstact);
 
-route.post('/',bodyParser.urlencoded({extended : true}),constactController.postConstact)
+route.post('/',authguard.isAuth,bodyParser.urlencoded({extended : true}),constactController.postConstact)
 
 module.exports = route;

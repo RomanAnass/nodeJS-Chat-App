@@ -3,10 +3,10 @@ const route = express.Router();
 
 const bodyParser = require('body-parser');
 const loginController = require('../Controllers/login.controller');
+const authguard = require('./guards/auth.guard');
 
+route.get('/',authguard.noAuth,loginController.getLogin);
 
-route.get('/',loginController.getLogin);
-
-route.post('/',bodyParser.urlencoded({extended : true}),loginController.postLogin);
+route.post('/',authguard.noAuth,bodyParser.urlencoded({extended : true}),loginController.postLogin);
 
 module.exports = route;
