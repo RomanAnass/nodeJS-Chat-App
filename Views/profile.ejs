@@ -48,7 +48,7 @@
                                                 <% }else if(isfriend){  %>   
                                                     <button type="button" class="btn btn-addfriend mr-3"><i class='fa fa-user-plus'></i> Delete Friend</button>
                                                 <% }else{  %>
-                                                    <button type="button" class="btn btn-addfriend mr-3"><i class='fa fa-user-plus'></i> Add Friend</button>
+                                                    <button type="button" class="btn btn-addfriend mr-3" id="addfriendBtn"><i class='fa fa-user-plus'></i> Add Friend</button>
                                                 <% }  %>
                                             <% }  %>
                                                 <button type="button" class="btn btn-start-chat <%= isOwner ?  'ml-5' : '' %>"  data-toggle="modal" data-target="#newMessageModal" >
@@ -567,7 +567,7 @@
         </div>
     </div>
     <%- include('les parties/script') -%>
-    <% if(!isOwner && !isFriends && !isRequestSent && !isRequestReceived){ %>
+    <% if(!isOwner && !isfriend && !isRequestSent && !isRequestRecieve){ %>
         <script src="/js/sockets/friend.socket.js"></script>
     <% } %>
 </body></html>
