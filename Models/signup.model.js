@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const validator = require('validator');
 const User = require('./user.model').User;
 
 const server = '127.0.0.1:27017';

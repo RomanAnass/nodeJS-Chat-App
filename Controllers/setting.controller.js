@@ -3,7 +3,7 @@ const settingModel = require('../Models/setting.model');
 exports.getsetting =(req,res,next)=>{
     res.render('settings',{
         pageTitle: 'Settings',
-        userId: req.session.userId,
+        IsUser: req.session.userId,
         photo: req.session.photo,
         username: req.session.username  
     })

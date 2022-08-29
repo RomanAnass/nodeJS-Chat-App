@@ -9,6 +9,8 @@ exports.getProfile = (req,res,next)=>{
          pageTitle: 'porfile',
          IsUser: req.session.userId,
          MyId: req.session.userId,
+         myname: req.session.username,
+         myphoto: req.session.photo,
          friendId: user.id,
          email: user.email,
          photo: user.photo,
@@ -16,8 +18,15 @@ exports.getProfile = (req,res,next)=>{
          date_naissance: user.date_naissance,
          adresse:   user.adresse,
          phoneNumber: user.phoneNumber,
-         isOwner: id === req.session.userId, 
-      }) 
-   })  
+         isOwner: id === req.session.userId,
+         isRequestSent: user.friendRequest.find(friend => friend.id === req.session.userId),
+         isRequestRecieve: user.sentRequest.find(friend => friend.id === req.session.userId),
+         isfriend: user.friends.find(friend => friend.id === req.session.userId)
+      })
+     
+   })
+   .catch((err)=>{
+      res.redirect('/error');
+   })   
 };
 

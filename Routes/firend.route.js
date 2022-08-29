@@ -5,4 +5,6 @@ const authguard = require('./guards/auth.guard');
 
 route.get('/',authguard.isAuth,friendController.getfriend);
 
+route.get('/:id',authguard.isAuth,friendController.getfriend);
+
 module.exports = route;

@@ -262,7 +262,7 @@
     background-clip: text;
 }
 
-.btn-follow,
+.btn-addfriend,
 .btn-start-chat {
     font-size: 0.8rem;
     border-radius: 30px;
@@ -270,12 +270,12 @@
     width: 50%;
 }
 
-.btn-follow {
+.form .btn-addfriend {
     border: 1px solid #007bff;
     color: #007bff;
 }
 
-.btn-follow:hover {
+.btn-addfriend:hover {
     background-color: #007bff;
     color: #fff;
 }

@@ -4,7 +4,7 @@ exports.getMessage = (req,res,next) => {
     console.log(req.session)
     res.render('messages',{
         pageTitle : 'Messages',
-        userId: req.session.userId,
+        IsUser: req.session.userId,
         firstname: req.session.firstname,
         lastname: req.session.lastname,
         date_naissance: req.session.date_naissance,

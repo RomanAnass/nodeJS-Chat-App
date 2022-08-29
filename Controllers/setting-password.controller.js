@@ -3,7 +3,7 @@ const settingPasswordModel = require('../Models/setting-password.model');
 exports.getSettingPassword = (req,res,next)=>{
     res.render('setting-password',{
         pageTitle: 'setting-password',
-        userId: req.session.userId,
+        IsUser: req.session.userId,
         photo: req.session.photo,
         username: req.session.username
     })

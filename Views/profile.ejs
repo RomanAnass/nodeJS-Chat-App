@@ -31,14 +31,32 @@
                                         <p class="profile-fullname mt-3"><%= username  %></p>
                                         <p class="profile-username mb-3 text-muted"><%= email  %></p>
                                     </div>
-                                    <div class="intro mt-4">
-                                        <div class="d-flex">
-                                            <button type="button" class="btn btn-follow mr-3"><i class='bx bx-plus'></i> Follow</button>
-                                            <button type="button" class="btn btn-start-chat" data-toggle="modal" data-target="#newMessageModal"><i class='bx bxs-message-rounded'></i> <span class="fs-8">Message</span></button>
-                                            <button type="button" class="btn btn-follow" id="moreMobile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class='bx bx-dots-horizontal-rounded'></i> <span class="fs-8">More</span></button>
+                                    <div class="intro mr-4">
+                                        <div class="d-flex <%= isOwner ?  'ml-5' : '' %>" id="friends-div" >
+                                            <% if(!isOwner){ %>
+                                                <input id="myname" type="hidden" value="<%= myname %>">
+                                                <input id="Myphoto" type="hidden" value="<%= myphoto %>">
+                                                <input id="friendId" type="hidden" value="<%= friendId %>">
+                                                <input id="username" type="hidden" value="<%= username %>">
+                                                <input id="friendPhoto" type="hidden" value="<%= photo %>">
+                                                <% if(isRequestSent){ %>
+                                                    <button type="button" class="btn btn-addfriend mr-3"><i class='fa fa-user-plus'></i>Cancel Request</button>
+                                                    <button type="button" class="btn btn-addfriend mr-3"><i class='fa fa-user-plus'></i> Delete Friend</button>     
+                                                <% }else if(isRequestRecieve){  %>
+                                                    <button type="button" class="btn btn-addfriend mr-3"><i class='fa fa-user-plus'></i> reject Request</button>
+                                                    <button type="button" class="btn btn-addfriend mr-3"><i class='fa fa-user-plus'></i> Accepte Request</button>
+                                                <% }else if(isfriend){  %>   
+                                                    <button type="button" class="btn btn-addfriend mr-3"><i class='fa fa-user-plus'></i> Delete Friend</button>
+                                                <% }else{  %>
+                                                    <button type="button" class="btn btn-addfriend mr-3"><i class='fa fa-user-plus'></i> Add Friend</button>
+                                                <% }  %>
+                                            <% }  %>
+                                                <button type="button" class="btn btn-start-chat <%= isOwner ?  'ml-5' : '' %>"  data-toggle="modal" data-target="#newMessageModal" >
+                                                    <i class='bx bxs-message-rounded'></i> <span class="fs-8">Message</span></button> 
+                                            <button type="button" class="btn btn-addfriend" id="moreMobile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class='bx bx-dots-horizontal-rounded'></i> <span class="fs-8">More</span></button>
                                             <div class="dropdown-menu dropdown-menu-right profile-ql-dropdown" aria-labelledby="moreMobile">
-                                                <a href="newsfeed.html" class="dropdown-item">Timeline</a>
-                                                <a href="about.html" class="dropdown-item">About</a>
+                                                <a href="/profile" class="dropdown-item">Timeline</a>
+                                                <a href="/about" class="dropdown-item">About</a>
                                                 <a href="followers.html" class="dropdown-item">Followers</a>
                                                 <a href="following.html" class="dropdown-item">Following</a>
                                                 <a href="photos.html" class="dropdown-item">Photos</a>
@@ -104,7 +122,7 @@
                                                     <a href="#">Timeline</a>
                                                 </li>
                                                 <li class="list-inline-item">
-                                                    <a href="#">About</a></li>
+                                                    <a href="/about">About</a></li>
                                                 <li class="list-inline-item">
                                                     <a href="/friends">Friends</a>
                                                 </li>
@@ -549,4 +567,7 @@
         </div>
     </div>
     <%- include('les parties/script') -%>
+    <% if(!isOwner && !isFriends && !isRequestSent && !isRequestReceived){ %>
+        <script src="/js/sockets/friend.socket.js"></script>
+    <% } %>
 </body></html>

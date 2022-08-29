@@ -21,7 +21,13 @@ const passport = require("passport");
 const settingsPassword = require('./Routes/setting-password.route');
 const app = express();
 const bodyParser = require('body-parser');
+const { Server } = require('http');
+const server = require('http').createServer(app); 
+const io = require('socket.io')(server);
+
+
 app.set('view engine', 'ejs');
+app.set('views', 'views');
 
 app.use(express.static(path.join(__dirname,'Assets')));
 
@@ -41,6 +47,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(bodyParser.json());
+
+require('./sockets/init')(io);
+require('./sockets/friend')(io);
 
 app.use('/',home);
 app.use('/messages',messages);
@@ -62,7 +71,7 @@ app.use((req,res,next)=>{
 const port = '3000'
 const  hostname = 'localhost'
 
-app.listen(port,()=>{
+server.listen(port,()=>{
     console.log(`http://${hostname}:${port}`);
 })
 

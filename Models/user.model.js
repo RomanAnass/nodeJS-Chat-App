@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const validator = require('validator');
 
 const Schema = mongoose.Schema;
 
@@ -23,7 +24,19 @@ const UserSchema = new Schema({
     phoneNumber : String,
     photo: { type: String, default: "default-user-image.png" },
     date_naissance :{ type: Date, required: true },
-    adresse: String  
+    adresse: String,
+    friendRequest: {
+        type: [{id: String, username: String, photo: String}],
+        default: []
+    },
+    sentRequest: {
+        type: [{id: String, username: String, photo: String}],
+        default: []
+    },
+    friends: {
+        type: [{id: String, username: String, photo: String, chatId: String}],
+        default: []
+    }  
 });
 
 const User = mongoose.model('Users', UserSchema);

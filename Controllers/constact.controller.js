@@ -3,7 +3,7 @@ const constact = require('../Models/constact.model');
 exports.getConstact = (req,res,next)=>{
     res.render('contact',{
       pageTitle: 'constact',
-      userId: req.session.userId,
+      IsUser: req.session.userId,
       username: req.session.username,
       photo: req.session.photo 
     })
