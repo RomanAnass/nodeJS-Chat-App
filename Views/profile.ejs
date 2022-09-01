@@ -35,20 +35,19 @@
                                         <div class="d-flex <%= isOwner ?  'ml-5' : '' %>" id="friends-div" >
                                             <% if(!isOwner){ %>
                                                 <input id="myname" type="hidden" value="<%= myname %>">
-                                                <input id="Myphoto" type="hidden" value="<%= myphoto %>">
-                                                <input id="friendId" type="hidden" value="<%= friendId %>">
+                                                <input id="myphoto" type="hidden" value="<%= myphoto %>">
+                                                <input id="userId" type="hidden" value="<%= userId %>">
                                                 <input id="username" type="hidden" value="<%= username %>">
-                                                <input id="friendPhoto" type="hidden" value="<%= photo %>">
+                                                <input id="photo" type="hidden" value="<%= photo %>">
                                                 <% if(isRequestSent){ %>
-                                                    <button type="button" class="btn btn-addfriend mr-3"><i class='fa fa-user-plus'></i>Cancel Request</button>
-                                                    <button type="button" class="btn btn-addfriend mr-3"><i class='fa fa-user-plus'></i> Delete Friend</button>     
+                                                    <button type="button" class="btn btn-addfriend mr-3"  id="cancelBtn" onclick='cancelfriendRequest()'>Cancel Request</button>  
                                                 <% }else if(isRequestRecieve){  %>
-                                                    <button type="button" class="btn btn-addfriend mr-3"><i class='fa fa-user-plus'></i> reject Request</button>
-                                                    <button type="button" class="btn btn-addfriend mr-3"><i class='fa fa-user-plus'></i> Accepte Request</button>
+                                                    <button type="button" class="btn btn-addfriend mr-3"  id="rejectBtn" onclick='rejectFriendRequest()'>reject Request</button>
+                                                    <button type="button" class="btn btn-addfriend mr-3"  id="accepteBtn" onclick='accepteFriendRequest()'>Accepte Request</button>
                                                 <% }else if(isfriend){  %>   
-                                                    <button type="button" class="btn btn-addfriend mr-3"><i class='fa fa-user-plus'></i> Delete Friend</button>
+                                                    <button type="button" class="btn btn-addfriend mr-3"  id="deleteBtn" onclick='deleteFriendRequest()'>Delete Friend</button>
                                                 <% }else{  %>
-                                                    <button type="button" class="btn btn-addfriend mr-3" id="addfriendBtn"><i class='fa fa-user-plus'></i> Add Friend</button>
+                                                    <button type="button" class="btn btn-addfriend mr-3" id="addfriendBtn" onclick='sendFriendRequest()'><i class='fa fa-user-plus'></i> Add Friend</button>
                                                 <% }  %>
                                             <% }  %>
                                                 <button type="button" class="btn btn-start-chat <%= isOwner ?  'ml-5' : '' %>"  data-toggle="modal" data-target="#newMessageModal" >
@@ -567,7 +566,9 @@
         </div>
     </div>
     <%- include('les parties/script') -%>
-    <% if(!isOwner && !isfriend && !isRequestSent && !isRequestRecieve){ %>
+    <% if(!isOwner){ %>
         <script src="/js/sockets/friend.socket.js"></script>
     <% } %>
+
+
 </body></html>

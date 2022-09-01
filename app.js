@@ -25,6 +25,8 @@ const { Server } = require('http');
 const server = require('http').createServer(app); 
 const io = require('socket.io')(server);
 
+const getFriendRequest = require('./Models/user.model').getFriendRequests;
+
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -50,6 +52,22 @@ app.use(bodyParser.json());
 
 require('./sockets/init')(io);
 require('./sockets/friend')(io);
+
+app.use((req,res,next)=>{
+    if(req.session.userId){
+ 
+        getFriendRequest(req.session.userId).then(requests =>{
+         
+            req.friendRequests = requests
+            next()
+
+        }).catch(error => res.redirect('/error'));
+
+    }else{
+
+        next();
+    }
+})
 
 app.use('/',home);
 app.use('/messages',messages);

@@ -8,6 +8,7 @@ exports.getMessage = (req,res,next) => {
         firstname: req.session.firstname,
         lastname: req.session.lastname,
         date_naissance: req.session.date_naissance,
-        photo: req.session.photo
+        photo: req.session.photo,
+        friendRequests: req.friendRequests
     }) 
 }

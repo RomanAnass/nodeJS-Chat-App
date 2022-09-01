@@ -5,7 +5,8 @@ exports.getsetting =(req,res,next)=>{
         pageTitle: 'Settings',
         IsUser: req.session.userId,
         photo: req.session.photo,
-        username: req.session.username  
+        username: req.session.username,
+        friendRequests: req.friendRequests  
     })
 }
 

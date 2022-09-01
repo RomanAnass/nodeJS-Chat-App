@@ -4,8 +4,15 @@ const User = require('./user.model').User;
 const server = 'localhost:27017';
 const database = 'nodeJS-Chat-App';
 
-exports.NewRequest = async (update,filter)=>{
+exports.NewFriendRequest = async (update,filter)=>{
   
-    await mongoose.connect(`mongodb://${server}/${database}`);
+    try {
+     
+        await mongoose.connect(`mongodb://${server}/${database}`);
+        
+    } catch (error) {
+       console.log(err); 
+    }
+   
      
 }

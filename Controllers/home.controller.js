@@ -6,6 +6,7 @@ exports.getHome = (req,res,next) => {
        IsUser: req.session.userId,
        firstname: req.session.firstname,
        lastname: req.session.lastname,
+       friendRequests: req.friendRequests,
        date_naissance: req.session.date_naissance,
        photo: req.session.photo,
        email: req.session.email 
