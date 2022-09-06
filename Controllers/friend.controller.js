@@ -12,7 +12,7 @@ exports.getfriend = (req,res,next)=>{
          myname: req.session.username,
          myphoto: req.session.photo,
          friendRequests: req.friendRequests,
-         friendId: user.id,
+         userId: user.id,
          email: user.email,
          photo: user.photo,
          username: user.username,
@@ -20,9 +20,9 @@ exports.getfriend = (req,res,next)=>{
          adresse:   user.adresse,
          phoneNumber: user.phoneNumber,
          isOwner: id === req.session.userId,
-         isRequestSent: user.friendRequest.find(friend => friend.id === req.session.userId),
-         isRequestRecieve: user.sentRequest.find(friend => friend.id === req.session.userId),
-         isfriend: user.friends.find(friend => friend.id === req.session.userId) 
+         isRequestSent: user.friendRequests.find(friend => friend.id === req.session.userId),
+         isRequestRecieve: user.sentRequests.find(friend => friend.id === req.session.userId),
+         isfriend: user.friends.find(friend => friend.id === req.session.userId)
       }) 
    })  
 }

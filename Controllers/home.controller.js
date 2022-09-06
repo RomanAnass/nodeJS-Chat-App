@@ -1,4 +1,6 @@
 const loginModel = require('../Models/home.model');
+const fs = require("fs");
+const path = require('path');
 
 exports.getHome = (req,res,next) => {
     res.render('home',{
@@ -11,4 +13,24 @@ exports.getHome = (req,res,next) => {
        photo: req.session.photo,
        email: req.session.email 
       })
+}
+
+
+exports.getImage = (req, res) => {
+    fs.readFile(
+        path.join(__dirname,'..','Assets','images','users',req.params.id),
+
+        function (err, image) {
+            if (err) {
+                throw err;
+            }
+           // console.log(image);
+           
+            res.setHeader('Content-Type', 'image/jpg');
+            res.setHeader('Content-Length', ''); // Image size here
+            res.setHeader('Access-Control-Allow-Origin', '*'); // If needs to be public
+            res.send(image);
+        }
+    );
+
 }

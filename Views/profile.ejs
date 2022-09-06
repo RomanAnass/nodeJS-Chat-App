@@ -19,8 +19,8 @@
                                 <div class="profile-info-left">
                                     <div class="text-center">
                                         <div class="profile-img w-shadow">
-                                            <div class="profile-img-overlay"></div>
-                                            <img src="<%= `/images/users/${photo}` %>" alt="Avatar" class="avatar img-circle">
+                                            <div class="profile-img-overlay" id="image"></div>
+                                            <img src="<%= `/images/users/${photo}` %>"  id="Profileimage" alt="Avatar" class="avatar img-circle">
                                             <div class="profile-img-caption">
                                                 <label for="updateProfilePic" class="upload">
                                                     <i class='bx bxs-camera'></i> Update
@@ -118,12 +118,12 @@
                                         <div class="col-md-9 profile-center">
                                             <ul class="list-inline profile-links d-flex justify-content-between w-shadow rounded">
                                                 <li class="list-inline-item profile-active">
-                                                    <a href="#">Timeline</a>
+                                                    <a href="/profile/<%= userId %>">Timeline</a>
                                                 </li>
                                                 <li class="list-inline-item">
-                                                    <a href="/about">About</a></li>
+                                                    <a href="/about/<%= userId %>">About</a></li>
                                                 <li class="list-inline-item">
-                                                    <a href="/friends">Friends</a>
+                                                    <a href="/friends/<%= userId %>">Friends</a>
                                                 </li>
                                                 <li class="list-inline-item">
                                                     <a href="#">Photos</a>

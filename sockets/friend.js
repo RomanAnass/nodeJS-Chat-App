@@ -9,7 +9,6 @@ module.exports = (io)=>{
             sendFriendRequests(data).then(()=>{
                 console.log(data);
                 socket.emit('requestSent');
-                // si friend not online
                 io.to(data.friendId).emit('NewFriendRequest',{
                     friendId: data.myId,
                     friendname: data.myname,

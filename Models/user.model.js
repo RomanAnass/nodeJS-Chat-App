@@ -1,4 +1,3 @@
-const { request } = require('express');
 const mongoose = require('mongoose');
 const validator = require('validator');
 const Chat = require('./chat.model').Chat;
@@ -146,6 +145,19 @@ exports.deletefriendRequests = async (data)=>{
         mongoose.disconnect();
         return new Error(err);
     }
+}
+
+exports.updateprofilephoto = async (id,imagename)=>{
+    try {
+        await mongoose.connect(`mongodb://${server}/${database}`);
+        await User.findOneAndUpdate({_id : id},{photo: imagename})
+        mongoose.disconnect();
+        return; 
+    } catch (error) {
+         mongoose.disconnect();
+         return error;
+    }
+     
 }
 
 exports.getFriendRequests = async (id)=>{

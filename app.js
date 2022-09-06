@@ -82,6 +82,7 @@ app.use('/signup',signup);
 app.use('/about',about);
 app.use('/logout',logout);
 
+
 app.use((req,res,next)=>{
     res.render('error',{pageTitle : 'error'})
 })
