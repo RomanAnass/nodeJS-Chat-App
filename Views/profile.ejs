@@ -21,12 +21,14 @@
                                         <div class="profile-img w-shadow">
                                             <div class="profile-img-overlay" id="image"></div>
                                             <img src="<%= `/images/users/${photo}` %>"  id="Profileimage" alt="Avatar" class="avatar img-circle">
+                                            <% if(isOwner){ %>
                                             <div class="profile-img-caption">
                                                 <label for="updateProfilePic" class="upload">
                                                     <i class='bx bxs-camera'></i> Update
                                                     <input type="file" id="updateProfilePicInput" class="text-center upload">
                                                 </label>
                                             </div>
+                                            <% } %>
                                         </div>
                                         <p class="profile-fullname mt-3"><%= username  %></p>
                                         <p class="profile-username mb-3 text-muted"><%= email  %></p>

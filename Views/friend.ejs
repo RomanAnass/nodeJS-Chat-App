@@ -232,14 +232,15 @@
                                                     <a href="#" class="btn btn-link">See All</a>
                                                 </div>
                                                 <div class="row">
+                                                    <% for(let friend of friends){ %>
                                                     <div class="col-md-4 col-sm-6">
                                                         <div class="card group-card shadow-sm">
-                                                            <img src="/images/groups/group-1.png" class="card-img-top group-card-image" alt="Group image">
+                                                            <img src="/images/users/<%= `${friend.photo}` %>" class="card-img-top group-card-image" alt="Group image">
                                                             <div class="card-body">
-                                                                <h5 class="card-title">Ruth D. Greene <img src="/images/theme/verify.png" width="10px" class="verify" alt="Group verified"></h5>
+                                                                <h5 class="card-title"><a href="/profile/<%= friend.id %>"><%= friend.name %> </a><img src="/images/theme/verify.png" width="10px" class="verify" alt="Group verified"></h5>
                                                                 <p class="card-text">10k Members 20+ post a week</p>
                                                                 <div class="btn-group w-100" role="group">
-                                                                    <a href="#" class="btn btn-quick-link join-group-btn border w-100">Message</a>
+                                                                    <a href="/messages/<%= friend.chatId %>" class="btn btn-quick-link join-group-btn border w-100">Message</a>
                                                                     <div class="btn-group" role="group">
                                                                         <button id="friendsMore" type="button" class="btn btn-quick-link join-group-btn border btn-group-drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                             <i class='bx bx-dots-horizontal-rounded'></i>
@@ -253,36 +254,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4 col-sm-6">
-                                                        <div class="card group-card shadow-sm">
-                                                            <img src="/images/groups/group-2.jpg" class="card-img-top group-card-image" alt="Group image">
-                                                            <div class="card-body">
-                                                                <h5 class="card-title">Tourism</h5>
-                                                                <p class="card-text">2.5k Members 35+ post a week</p>
-                                                                <a href="#" class="btn btn-quick-link join-group-btn border w-100">Join</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 col-sm-6">
-                                                        <div class="card group-card shadow-sm">
-                                                            <img src="/images/groups/group-3.jpg" class="card-img-top group-card-image" alt="Group image">
-                                                            <div class="card-body">
-                                                                <h5 class="card-title">Reading Books</h5>
-                                                                <p class="card-text">1.3k Members 10+ post a day</p>
-                                                                <a href="#" class="btn btn-quick-link join-group-btn border w-100">Join</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 col-sm-6">
-                                                        <div class="card group-card shadow-sm">
-                                                            <img src="/images/groups/group-4.jpg" class="card-img-top group-card-image" alt="Group image">
-                                                            <div class="card-body">
-                                                                <h5 class="card-title">Capture The Best</h5>
-                                                                <p class="card-text">2.8k Members 8+ post a day</p>
-                                                                <a href="#" class="btn btn-quick-link join-group-btn border w-100">Join</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    <% } %>
                                                 </div>
                                             </div>
                                         </div>

@@ -22,7 +22,8 @@ exports.getfriend = (req,res,next)=>{
          isOwner: id === req.session.userId,
          isRequestSent: user.friendRequests.find(friend => friend.id === req.session.userId),
          isRequestRecieve: user.sentRequests.find(friend => friend.id === req.session.userId),
-         isfriend: user.friends.find(friend => friend.id === req.session.userId)
+         isfriend: user.friends.find(friend => friend.id === req.session.userId),
+         friends: user.friends 
       }) 
    })  
 }
