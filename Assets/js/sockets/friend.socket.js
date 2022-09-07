@@ -101,3 +101,4 @@ socket.on('deleterequest',()=>{
     document.getElementById('deleteBtn').remove()
     friendsDiv.innerHTML += "<button type='button' class='btn btn-addfriend mr-3' id='deleteBtn' onclick='sendFriendRequest()' ><i class='fa fa-user-plus'></i> Add Friend</button>"
 })
+

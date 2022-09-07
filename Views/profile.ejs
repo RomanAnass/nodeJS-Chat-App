@@ -569,6 +569,9 @@
     <% if(!isOwner){ %>
         <script src="/js/sockets/friend.socket.js"></script>
     <% } %>
+    <% if(isOwner){ %>
+        <script src="/js/sockets/updateProfile.socket.js"></script>
+    <% } %>
 
 
 </body></html>

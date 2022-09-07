@@ -52,6 +52,7 @@ app.use(bodyParser.json());
 
 require('./sockets/init')(io);
 require('./sockets/friend')(io);
+require('./sockets/updateProfile')(io);
 
 app.use((req,res,next)=>{
     if(req.session.userId){
