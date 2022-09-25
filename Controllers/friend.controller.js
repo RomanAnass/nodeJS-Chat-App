@@ -11,7 +11,7 @@ exports.getfriend = (req,res,next)=>{
          MyId: req.session.userId,
          myname: req.session.username,
          myphoto: req.session.photo,
-         friendRequests: req.friendRequests,
+         notifications: req.notifications,
          userId: user.id,
          email: user.email,
          photo: user.photo,

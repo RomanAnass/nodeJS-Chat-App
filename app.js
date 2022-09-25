@@ -11,7 +11,7 @@ const signup = require('./Routes/signup.route');
 const home = require('./Routes/home.route');
 const about = require('./Routes/about.route');
 const logout = require('./Routes/logout.route');
-const messages = require('./Routes/message.route');
+const messages = require('./Routes/messages.route');
 const friend = require('./Routes/firend.route');
 const profile = require('./Routes/profile.route');
 const groups = require('./Routes/group.route');
@@ -25,7 +25,7 @@ const { Server } = require('http');
 const server = require('http').createServer(app); 
 const io = require('socket.io')(server);
 
-const getFriendRequest = require('./Models/user.model').getFriendRequests;
+const getNotifications = require('./Models/user.model').getNotifications;
 
 
 app.set('view engine', 'ejs');
@@ -53,13 +53,15 @@ app.use(bodyParser.json());
 require('./sockets/init')(io);
 require('./sockets/friend')(io);
 require('./sockets/updateProfile')(io);
+require('./sockets/message')(io);
+require('./sockets/post')(io);
 
 app.use((req,res,next)=>{
     if(req.session.userId){
  
-        getFriendRequest(req.session.userId).then(requests =>{
+        getNotifications(req.session.userId).then(notifications =>{
          
-            req.friendRequests = requests
+            req.notifications = notifications
             next()
 
         }).catch(error => res.redirect('/error'));

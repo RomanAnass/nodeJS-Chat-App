@@ -30,6 +30,10 @@ const UserSchema = new Schema({
         type: [{id: String, friendname: String, friendphoto: String}],
         default: []
     },
+    notifications: {
+        type: [{id: String, friendname: String, friendphoto: String, Type: String ,isRead: {type: Boolean, default: true}}],
+        default: [] 
+    },
     sentRequests: {
         type: [{id: String, name: String, photo: String}],
         default: []
@@ -37,10 +41,31 @@ const UserSchema = new Schema({
     friends: {
         type: [{id: String, name: String, photo: String, chatId: String}],
         default: []
-    }  
+    },
+    myPosts: [{
+        id: String,
+        name: String,
+        photo: String,
+        content: String,
+        createdAt: Number
+    }],
+    friendPosts: [{
+        friendId: String,
+        name: String,
+        photo: String, 
+        content: String,
+        createdAt: Number,
+    }],
+    newMessage: [{
+        chatId: String,
+        name: String,
+        photo: String, 
+        content: String,
+        createdAt: Number
+    }]
 });
 
-const User = mongoose.model('Users', UserSchema);
+const User = mongoose.model('user', UserSchema);
 
 exports.User = User;
 
@@ -62,9 +87,8 @@ exports.getUserData = async id =>{
 exports.sendFriendRequests = async (data)=>{
   
     try {
-     
         await mongoose.connect(`mongodb://${server}/${database}`);
-        await User.updateOne({_id: data.friendId},{$push: {friendRequests : {id: data.myId, friendname: data.myname, friendphoto: data.myphoto}}});
+        await  User.updateOne({_id: data.friendId},{$push: {friendRequests : {id: data.myId, friendname: data.myname, friendphoto: data.myphoto},notifications : {id: data.myId, friendname: data.myname, friendphoto: data.myphoto, Type: 'friend request'}}});
         await User.updateOne({_id: data.myId},{$push: {sentRequests : {id: data.friendId, name: data.friendname, photo: data.friendphoto}}}); 
         mongoose.disconnect();
         return;
@@ -167,6 +191,91 @@ exports.getFriendRequests = async (id)=>{
         mongoose.disconnect();
         return data.friendRequests; 
     } catch (err) {
+        mongoose.disconnect();
         throw new Error(err);
     }
 };
+
+exports.getNewMessages = async (id)=>{
+  
+    try {
+      await mongoose.connect(`mongodb://${server}/${database}`);
+      const user = await User.findById(id,{newMessage: true});
+      mongoose.disconnect();
+      return user.newMessage; 
+    } catch (error) {
+        mongoose.disconnect();
+        throw new Error(err);
+    }
+}
+
+
+exports.getNotifications = async (id)=>{
+
+    try {
+        await mongoose.connect(`mongodb://${server}/${database}`);
+        const user = await User.findById(id,{notifications: true});
+        mongoose.disconnect(); 
+        return user.notifications ;
+
+    } catch (err) {
+        mongoose.disconnect();
+        throw new Error(err);
+    }
+
+}
+
+exports.addPost = async (id,post)=>{
+  
+    try {
+        let usersId = [];
+        console.log(id);
+        await mongoose.connect(`mongodb://${server}/${database}`);
+        const user = await User.findByIdAndUpdate(id,{$push: {friendPosts: {friendId: post.myId,name: post.username,photo: post.photo, content: post.content, createdAt: Date.now()},
+                                                    myPosts: {id: post.myId,name: post.username,photo: post.photo, content: post.content, createdAt: Date.now()}}});
+
+        user.friends.forEach(friend =>{
+           usersId.push(friend.id);
+        })
+
+        await User.updateMany({
+            _id: {
+                $in: usersId
+            }
+        },
+        {$push: {notifications: {id: post.myId, friendname: post.username, friendphoto: post.photo, Type: "post"},
+                friendPosts: {friendId: post.myId,name: post.username,photo: post.photo, content: post.content, createdAt: Date.now()}}}
+        )
+
+        mongoose.disconnect();
+        return usersId;
+    } catch (error) {
+        mongoose.disconnect();
+        throw new Error(error);
+    }
+}
+
+exports.deletePost = async ()=>{
+  
+    try {
+        
+    } catch (error) {
+        
+    }
+}
+
+exports.addMessage = async ()=>{
+    try {
+        
+    } catch (error) {
+        
+    }
+}
+
+exports.deleteMessage = async ()=>{
+    try {
+        
+    } catch (error) {
+        
+    }
+}

@@ -6,12 +6,9 @@ exports.getHome = (req,res,next) => {
     res.render('home',{
        pageTitle : 'Home',
        IsUser: req.session.userId,
-       firstname: req.session.firstname,
-       lastname: req.session.lastname,
-       friendRequests: req.friendRequests,
-       date_naissance: req.session.date_naissance,
+       notifications: req.notifications,
        photo: req.session.photo,
-       email: req.session.email 
+       username: req.session.username
       })
 }
 

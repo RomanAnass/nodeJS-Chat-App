@@ -5,7 +5,7 @@ const server = 'localhost:27017';
 const database = 'nodeJS-Chat-App';
 
 const chatSchema = mongoose.Schema({
-    users: [{type: mongoose.Schema.ObjectId,ref:'user'}]
+    users: [{type: mongoose.Schema.Types.ObjectId,ref:'user'}]
 });
 
 const Chat = mongoose.model('chat',chatSchema);

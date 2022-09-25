@@ -1,5 +1,5 @@
 
-const { sendFriendRequests,cancelfriendRequests,rejectfriendRequests,acceptefriendRequests,deletefriendRequests } = require('../Models/user.model'); 
+const { sendFriendRequests,cancelfriendRequests,rejectfriendRequests,acceptefriendRequests,deletefriendRequests,getNotifications } = require('../Models/user.model'); 
 
 
 module.exports = (io)=>{

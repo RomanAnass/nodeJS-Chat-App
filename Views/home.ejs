@@ -42,7 +42,7 @@
                                             </button>
                                         </div>
                                         <div class="col-md-3 text-right">
-                                            <button type="button" class="btn btn-primary btn-sm">Publish</button>
+                                            <button type="button" onclick="sendNewPost()" class="btn btn-primary btn-sm">Publish</button>
                                         </div>
                                     </div>
                                 </div>
@@ -956,6 +956,6 @@
     </div>
     <!-- END call modal -->
     <%- include('les parties/script') -%>
-  
+    <script src="/js/sockets/post.socket.js"></script>
 </body>
 </html>

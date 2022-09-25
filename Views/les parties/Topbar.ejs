@@ -173,12 +173,12 @@
           </li>
           <li class="nav-item s-nav dropdown notification">
               <a href="#" class="nav-link nav-links rm-drop-mobile drop-w-tooltip" data-toggle="dropdown" data-placement="bottom" data-title="Notifications" role="button" aria-haspopup="true" aria-expanded="false">
-                  <img src="/images/icons/navbar/notification.png" class="notification-bell" alt="navbar icon"> <span class="badge badge-pill badge-primary"><%= friendRequests.length %></span>
+                  <img src="/images/icons/navbar/notification1.png" class="notification-bell" alt="navbar icon"> <span class="badge badge-pill badge-primary"><%= notifications.length %></span>
               </a>
               <ul class="dropdown-menu notify-drop dropdown-menu-right nav-drop shadow-sm">
                   <div class="notify-drop-title">
                       <div class="row">
-                          <div class="col-md-6 col-sm-6 col-xs-6 fs-8">Notifications <span class="badge badge-pill badge-primary ml-2"><%= friendRequests.length %></span></div>
+                          <div class="col-md-6 col-sm-6 col-xs-6 fs-8">Notifications <span class="badge badge-pill badge-primary ml-2"><%= notifications.length %></span></div>
                           <div class="col-md-6 col-sm-6 col-xs-6 text-right">
                               <a href="#" class="notify-right-icon">
                                   Mark All as Read
@@ -189,35 +189,36 @@
                   <!-- end notify title -->
                   <!-- notify content -->
                   <div class="drop-content" id="notification">
-                    <% if(friendRequests.length === 0){ %>
+                    <% if(notifications.length === 0){ %>
                         <li>
                             <div class="col-md-2 col-sm-2 col-xs-2">
                             </div>
                             <div class="col-md-10 col-sm-10 col-xs-10">
-                                <span>no friend Requests</span>
+                                <span>aucune notification</span>
                             </div>
                         </li>
                         
              
-                           <% } %>
-                    <% for(let request of friendRequests){ %>
+                    <% }else { %>
+                    <% for(let notification of notifications){ %>
                       <li>
                           <div class="col-md-2 col-sm-2 col-xs-2">
                               <div class="notify-img"> 
-                                <a href="/profile/<%= request.id %>" class="notification-user"><img src="/images/users/<%= request.friendphoto %>"  alt="notification user image"></a>
+                                <a href="/profile/<%= notification.id %>" class="notification-user"><img src="/images/users/<%= notification.friendphoto %>"  alt="notification user image"></a>
                               </div>
                           </div>
                           <div class="col-md-10 col-sm-10 col-xs-10">
-                              <a href="/profile/<%= request.id %>" class="notification-user"><%= request.friendname %></a> <span class="notification-type">send you a invitation </span><a href="#" class="notification-for"></a>
+                              <a href="/profile/<%= notification.id %>" class="notification-user"><%= notification.friendname %></a> <span class="notification-type">send you a invitation </span><a href="#" class="notification-for"></a>
                               <a href="#" class="notify-right-icon">
                                   <i class='bx bx-radio-circle-marked'></i>
                               </a>
                               <p class="time">
-                                  <span class="badge badge-pill badge-primary"><i class='bx bxs-group'></i></span><%= friendRequests.length %> 
+                                  <span class="badge badge-pill badge-primary"><i class='bx bxs-group'></i></span><%=  %> 
                               </p>
                           </div>
                       </li>
-                      <% } %>    
+                      <% } %> 
+                      <% } %>   
                   </div>
                   <div class="notify-drop-footer text-center">
                       <a href="#">See More</a>
@@ -266,5 +267,6 @@
           <button type="button" class="btn nav-link" id="menu-toggle"><img src="/images/icons/theme/navs.png" alt="Navbar navs"></button>
       </ul>
       <input id="myId" type="hidden" value="<%= IsUser %>">
+      <input id="username" type="hidden" value="<%= username %>">
   </div>
 </nav>

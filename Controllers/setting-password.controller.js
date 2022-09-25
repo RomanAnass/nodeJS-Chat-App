@@ -6,7 +6,7 @@ exports.getSettingPassword = (req,res,next)=>{
         IsUser: req.session.userId,
         photo: req.session.photo,
         username: req.session.username,
-        friendRequests: req.friendRequests
+        notifications: req.notifications
     })
 };
 
