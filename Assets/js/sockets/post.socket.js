@@ -1,16 +1,14 @@
 const photo        =  document.getElementById('photoprofile').value;
 const username     =  document.getElementById('username').value;
-const content      =  document.getElementById('postForm').value
+const content      =  document.getElementById('postForm')
 
 
 function sendNewPost(){
-   // e.preventDefault();
-   console.log(1)
     socket.emit('post',{
         myId: myId,
         username: username,
         photo: photo,
-        content: content
+        content: content.value
     })
     console.log(2)
 }

@@ -30,16 +30,10 @@ const UserSchema = new Schema({
         type: [{id: String, friendname: String, friendphoto: String}],
         default: []
     },
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
     notifications: {
         type: [{id: String, friendname: String, friendphoto: String, Type: String ,isRead: {type: Boolean, default: true}}],
         default: [] 
     },
->>>>>>> 39751f9 (share new post)
->>>>>>> 210d3e7 (share new post)
     sentRequests: {
         type: [{id: String, name: String, photo: String}],
         default: []
@@ -47,18 +41,8 @@ const UserSchema = new Schema({
     friends: {
         type: [{id: String, name: String, photo: String, chatId: String}],
         default: []
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 210d3e7 (share new post)
-    }  
-});
 
-const User = mongoose.model('Users', UserSchema);
-<<<<<<< HEAD
-=======
-=======
-    },
+    },  
     myPosts: [{
         id: String,
         name: String,
@@ -83,8 +67,6 @@ const User = mongoose.model('Users', UserSchema);
 });
 
 const User = mongoose.model('user', UserSchema);
->>>>>>> 39751f9 (share new post)
->>>>>>> 210d3e7 (share new post)
 
 exports.User = User;
 
@@ -106,20 +88,17 @@ exports.getUserData = async id =>{
 exports.sendFriendRequests = async (data)=>{
   
     try {
-<<<<<<< HEAD
+
      
         await mongoose.connect(`mongodb://${server}/${database}`);
         await User.updateOne({_id: data.friendId},{$push: {friendRequests : {id: data.myId, friendname: data.myname, friendphoto: data.myphoto}}});
-=======
-<<<<<<< HEAD
      
         await mongoose.connect(`mongodb://${server}/${database}`);
         await User.updateOne({_id: data.friendId},{$push: {friendRequests : {id: data.myId, friendname: data.myname, friendphoto: data.myphoto}}});
-=======
+
         await mongoose.connect(`mongodb://${server}/${database}`);
         await  User.updateOne({_id: data.friendId},{$push: {friendRequests : {id: data.myId, friendname: data.myname, friendphoto: data.myphoto},notifications : {id: data.myId, friendname: data.myname, friendphoto: data.myphoto, Type: 'friend request'}}});
->>>>>>> 39751f9 (share new post)
->>>>>>> 210d3e7 (share new post)
+
         await User.updateOne({_id: data.myId},{$push: {sentRequests : {id: data.friendId, name: data.friendname, photo: data.friendphoto}}}); 
         mongoose.disconnect();
         return;
@@ -222,20 +201,11 @@ exports.getFriendRequests = async (id)=>{
         mongoose.disconnect();
         return data.friendRequests; 
     } catch (err) {
-<<<<<<< HEAD
+
         throw new Error(err);
     }
 };
-=======
-<<<<<<< HEAD
-        throw new Error(err);
-    }
-};
-=======
-        mongoose.disconnect();
-        throw new Error(err);
-    }
-};
+
 
 exports.getNewMessages = async (id)=>{
   
@@ -320,5 +290,4 @@ exports.deleteMessage = async ()=>{
         
     }
 }
->>>>>>> 39751f9 (share new post)
->>>>>>> 210d3e7 (share new post)
+

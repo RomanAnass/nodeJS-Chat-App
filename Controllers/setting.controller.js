@@ -6,15 +6,9 @@ exports.getsetting =(req,res,next)=>{
         IsUser: req.session.userId,
         photo: req.session.photo,
         username: req.session.username,
-<<<<<<< HEAD
-        friendRequests: req.friendRequests  
-=======
-<<<<<<< HEAD
-        friendRequests: req.friendRequests  
-=======
+        friendRequests: req.friendRequests,  
         notifications: req.notifications, 
->>>>>>> 39751f9 (share new post)
->>>>>>> 210d3e7 (share new post)
+
     })
 }
 

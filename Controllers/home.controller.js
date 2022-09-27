@@ -6,24 +6,16 @@ exports.getHome = (req,res,next) => {
     res.render('home',{
        pageTitle : 'Home',
        IsUser: req.session.userId,
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 210d3e7 (share new post)
        firstname: req.session.firstname,
        lastname: req.session.lastname,
        friendRequests: req.friendRequests,
        date_naissance: req.session.date_naissance,
        photo: req.session.photo,
-       email: req.session.email 
-<<<<<<< HEAD
-=======
-=======
+       email: req.session.email, 
        notifications: req.notifications,
        photo: req.session.photo,
        username: req.session.username
->>>>>>> 39751f9 (share new post)
->>>>>>> 210d3e7 (share new post)
+
       })
 }
 
