@@ -11,7 +11,15 @@ const signup = require('./Routes/signup.route');
 const home = require('./Routes/home.route');
 const about = require('./Routes/about.route');
 const logout = require('./Routes/logout.route');
+<<<<<<< HEAD
+const messages = require('./Routes/message.route');
+=======
+<<<<<<< HEAD
+const messages = require('./Routes/message.route');
+=======
 const messages = require('./Routes/messages.route');
+>>>>>>> 39751f9 (share new post)
+>>>>>>> 210d3e7 (share new post)
 const friend = require('./Routes/firend.route');
 const profile = require('./Routes/profile.route');
 const groups = require('./Routes/group.route');
@@ -25,7 +33,15 @@ const { Server } = require('http');
 const server = require('http').createServer(app); 
 const io = require('socket.io')(server);
 
+<<<<<<< HEAD
+const getFriendRequest = require('./Models/user.model').getFriendRequests;
+=======
+<<<<<<< HEAD
+const getFriendRequest = require('./Models/user.model').getFriendRequests;
+=======
 const getNotifications = require('./Models/user.model').getNotifications;
+>>>>>>> 39751f9 (share new post)
+>>>>>>> 210d3e7 (share new post)
 
 
 app.set('view engine', 'ejs');
@@ -53,15 +69,33 @@ app.use(bodyParser.json());
 require('./sockets/init')(io);
 require('./sockets/friend')(io);
 require('./sockets/updateProfile')(io);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
 require('./sockets/message')(io);
 require('./sockets/post')(io);
+>>>>>>> 39751f9 (share new post)
+>>>>>>> 210d3e7 (share new post)
 
 app.use((req,res,next)=>{
     if(req.session.userId){
  
+<<<<<<< HEAD
+        getFriendRequest(req.session.userId).then(requests =>{
+         
+            req.friendRequests = requests
+=======
+<<<<<<< HEAD
+        getFriendRequest(req.session.userId).then(requests =>{
+         
+            req.friendRequests = requests
+=======
         getNotifications(req.session.userId).then(notifications =>{
          
             req.notifications = notifications
+>>>>>>> 39751f9 (share new post)
+>>>>>>> 210d3e7 (share new post)
             next()
 
         }).catch(error => res.redirect('/error'));

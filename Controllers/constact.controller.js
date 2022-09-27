@@ -5,8 +5,16 @@ exports.getConstact = (req,res,next)=>{
       pageTitle: 'constact',
       IsUser: req.session.userId,
       username: req.session.username,
+<<<<<<< HEAD
+      photo: req.session.photo 
+=======
+<<<<<<< HEAD
+      photo: req.session.photo 
+=======
       photo: req.session.photo,
       notifications: req.notifications, 
+>>>>>>> 39751f9 (share new post)
+>>>>>>> 210d3e7 (share new post)
     })
 }
 

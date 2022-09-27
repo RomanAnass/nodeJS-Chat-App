@@ -1,5 +1,13 @@
 
+<<<<<<< HEAD
+const { sendFriendRequests,cancelfriendRequests,rejectfriendRequests,acceptefriendRequests,deletefriendRequests } = require('../Models/user.model'); 
+=======
+<<<<<<< HEAD
+const { sendFriendRequests,cancelfriendRequests,rejectfriendRequests,acceptefriendRequests,deletefriendRequests } = require('../Models/user.model'); 
+=======
 const { sendFriendRequests,cancelfriendRequests,rejectfriendRequests,acceptefriendRequests,deletefriendRequests,getNotifications } = require('../Models/user.model'); 
+>>>>>>> 39751f9 (share new post)
+>>>>>>> 210d3e7 (share new post)
 
 
 module.exports = (io)=>{
