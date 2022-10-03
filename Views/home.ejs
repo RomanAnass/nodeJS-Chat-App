@@ -1,4 +1,24 @@
 <%- include('les parties/Header') -%>
+<style>
+    #post-img-preview,
+    #post-video-preview {
+        height: 300px;
+        width: 300px;
+        object-fit: cover;
+    }
+    input[type=file] {
+    cursor: pointer;    
+    display: block;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    position: absolute;
+    right: 0px;
+    text-align: right;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+}
+</style>
 <body class="newsfeed">
     <div class="container-fluid" id="wrapper">
         <div class="row newsfeed-size">
@@ -29,10 +49,17 @@
                                     <div class="form-group post-input">
                                         <textarea class="form-control" id="postForm" rows="2" placeholder="What's on your mind, Arthur?"></textarea>
                                     </div>
+                                    <div>
+                                        <img id="post-img-preview" style="display: none;">
+                                    </div>
+                                    <div>
+                                        <video id="post-video-preview" controls style="display: none;"></video>
+                                    </div>
                                     <div class="row post-form-group">
                                         <div class="col-md-9">
                                             <button type="button" class="btn btn-link post-form-btn btn-sm">
-                                                <img src="/images/icons/theme/post-image.png" alt="post form icon"> <span>Photo/Video</span>
+                                               <span>Photo/Video</span>
+                                                <input type="file" name="file" id="fileImage" onchange="previewPostImage(this);">
                                             </button>
                                             <button type="button" class="btn btn-link post-form-btn btn-sm">
                                                 <img src="/images/icons/theme/tag-friend.png" alt="post form icon"> <span>Tag Friends</span>
@@ -956,14 +983,6 @@
     </div>
     <!-- END call modal -->
     <%- include('les parties/script') -%>
-<<<<<<< HEAD
-  
-=======
-<<<<<<< HEAD
-  
-=======
     <script src="/js/sockets/post.socket.js"></script>
->>>>>>> 39751f9 (share new post)
->>>>>>> 210d3e7 (share new post)
 </body>
 </html>

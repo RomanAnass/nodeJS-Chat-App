@@ -47,14 +47,16 @@ const UserSchema = new Schema({
         id: String,
         name: String,
         photo: String,
-        content: String,
+        caption: String,
+        file: String,
         createdAt: Number
     }],
     friendPosts: [{
         friendId: String,
         name: String,
         photo: String, 
-        content: String,
+        caption: String,
+        file: String,
         createdAt: Number,
     }],
     newMessage: [{
@@ -240,10 +242,9 @@ exports.addPost = async (id,post)=>{
   
     try {
         let usersId = [];
-        console.log(id);
         await mongoose.connect(`mongodb://${server}/${database}`);
-        const user = await User.findByIdAndUpdate(id,{$push: {friendPosts: {friendId: post.myId,name: post.username,photo: post.photo, content: post.content, createdAt: Date.now()},
-                                                    myPosts: {id: post.myId,name: post.username,photo: post.photo, content: post.content, createdAt: Date.now()}}});
+        const user = await User.findByIdAndUpdate(id,{$push: {friendPosts: {friendId: post.myId,name: post.username,photo: post.photo, caption: post.caption,file: post.filename, createdAt: Date.now()},
+                                                    myPosts: {id: post.myId,name: post.username,photo: post.photo, caption: post.caption,file: post.filename,createdAt: Date.now()}}});
 
         user.friends.forEach(friend =>{
            usersId.push(friend.id);
@@ -255,7 +256,7 @@ exports.addPost = async (id,post)=>{
             }
         },
         {$push: {notifications: {id: post.myId, friendname: post.username, friendphoto: post.photo, Type: "post"},
-                friendPosts: {friendId: post.myId,name: post.username,photo: post.photo, content: post.content, createdAt: Date.now()}}}
+                friendPosts: {friendId: post.myId,name: post.username,photo: post.photo, caption: post.caption,file: post.filename, createdAt: Date.now()}}}
         )
 
         mongoose.disconnect();
