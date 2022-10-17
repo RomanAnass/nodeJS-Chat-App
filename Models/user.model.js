@@ -239,12 +239,12 @@ exports.getNotifications = async (id)=>{
 }
 
 exports.addPost = async (id,post)=>{
-  
+   console.log(1)
     try {
         let usersId = [];
         await mongoose.connect(`mongodb://${server}/${database}`);
-        const user = await User.findByIdAndUpdate(id,{$push: {friendPosts: {friendId: post.myId,name: post.username,photo: post.photo, caption: post.caption,file: post.filename, createdAt: Date.now()},
-                                                    myPosts: {id: post.myId,name: post.username,photo: post.photo, caption: post.caption,file: post.filename,createdAt: Date.now()}}});
+        const user = await User.findByIdAndUpdate(id,{$push: {friendPosts: {friendId: post.userId,name: post.username,photo: post.photo, caption: post.caption,file: post.filename, createdAt: Date.now()},
+                                                    myPosts: {id: post.userId,name: post.username,photo: post.photo, caption: post.caption,file: post.filename,createdAt: Date.now()}}});
 
         user.friends.forEach(friend =>{
            usersId.push(friend.id);
@@ -255,8 +255,8 @@ exports.addPost = async (id,post)=>{
                 $in: usersId
             }
         },
-        {$push: {notifications: {id: post.myId, friendname: post.username, friendphoto: post.photo, Type: "post"},
-                friendPosts: {friendId: post.myId,name: post.username,photo: post.photo, caption: post.caption,file: post.filename, createdAt: Date.now()}}}
+        {$push: {notifications: {id: post.userId, friendname: post.username, friendphoto: post.photo, Type: "post"},
+                friendPosts: {friendId: post.userId,name: post.username,photo: post.photo, caption: post.caption,file: post.filename, createdAt: Date.now()}}}
         )
 
         mongoose.disconnect();
@@ -266,6 +266,19 @@ exports.addPost = async (id,post)=>{
         throw new Error(error);
     }
 }
+
+exports.getPosts = async (id) =>{
+   try {
+        await mongoose.connect(`mongodb://${server}/${database}`);
+        const user =await User.findById(id,{friendPosts: true})
+        mongoose.disconnect();
+        return user.friendPosts;
+
+   } catch (error) {
+    mongoose.disconnect();
+    throw new Error(error);
+   }
+}   
 
 exports.deletePost = async ()=>{
   
