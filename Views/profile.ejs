@@ -1,24 +1,4 @@
 <%- include('les parties/Header') -%>
-<style>
-    #post-img-preview,
-    #post-video-preview {
-        height: 300px;
-        width: 300px;
-        object-fit: cover;
-    }
-    input[type=file] {
-    cursor: pointer;    
-    display: block;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    position: absolute;
-    right: 0px;
-    text-align: right;
-    top: 0;
-    width: 100%;
-    overflow: hidden;
-}
-</style>
 <body class="profile">
     <div class="container-fluid newsfeed d-flex" id="wrapper">
         <div class="row newsfeed-size">
@@ -41,7 +21,6 @@
                                         <div class="profile-img w-shadow">
                                             <div class="profile-img-overlay" id="image"></div>
                                             <img src="<%= `/images/users/${photo}` %>"  id="Profileimage" alt="Avatar" class="avatar img-circle">
-                                            <input id="userId" type="hidden" value="<%= userId %>" id="userId">
                                             <% if(isOwner){ %>
                                             <div class="profile-img-caption">
                                                 <label for="updateProfilePic" class="upload">
@@ -57,7 +36,7 @@
                                     <div class="intro mr-4">
                                         <div class="d-flex <%= isOwner ?  'ml-5' : '' %>" id="friends-div" >
                                             <% if(!isOwner){ %>
-                                
+                                                <input id="myname" type="hidden" value="<%= myname %>">
                                                 <input id="myphoto" type="hidden" value="<%= myphoto %>">
                                                 <input id="userId" type="hidden" value="<%= userId %>">
                                                 <input id="username" type="hidden" value="<%= username %>">
@@ -170,17 +149,10 @@
                                                         <div class="form-group post-input">
                                                             <textarea class="form-control" id="postForm" rows="2" placeholder="What's on your mind?"></textarea>
                                                         </div>
-                                                        <div>
-                                                            <img id="post-img-preview" style="display: none;">
-                                                        </div>
-                                                        <div>
-                                                            <video id="post-video-preview" controls style="display: none;"></video>
-                                                        </div>
                                                         <div class="row post-form-group">
                                                             <div class="col-md-9">
                                                                 <button type="button" class="btn btn-link post-form-btn btn-sm">
                                                                     <i class='bx bx-images'></i> <span>Photo/Video</span>
-                                                                    <input type="file" name="file" id="fileImage" onchange="previewPostImage(this);">
                                                                 </button>
                                                                 <button type="button" class="btn btn-link post-form-btn btn-sm">
                                                                     <i class='bx bxs-group'></i> <span>Tag Friends</span>
@@ -190,7 +162,7 @@
                                                                 </button>
                                                             </div>
                                                             <div class="col-md-3 text-right">
-                                                                <button type="button"  class="btn btn-primary btn-sm"  onclick="sendNewPost()">Publish</button>
+                                                                <button type="button" class="btn btn-primary btn-sm">Publish</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -596,7 +568,6 @@
         </div>
     </div>
     <%- include('les parties/script') -%>
-    <script src="/js/sockets/post.socket.js"></script>
     <% if(!isOwner){ %>
         <script src="/js/sockets/friend.socket.js"></script>
     <% } %>
@@ -604,5 +575,5 @@
         <script src="/js/sockets/updateProfile.socket.js"></script>
     <% } %>
 
-   
+
 </body></html>

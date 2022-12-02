@@ -245,11 +245,11 @@ exports.addPost = async (id,post)=>{
         await mongoose.connect(`mongodb://${server}/${database}`);
         const user = await User.findByIdAndUpdate(id,{$push: {friendPosts: {friendId: post.userId,name: post.username,photo: post.photo, caption: post.caption,file: post.filename, createdAt: Date.now()},
                                                     myPosts: {id: post.userId,name: post.username,photo: post.photo, caption: post.caption,file: post.filename,createdAt: Date.now()}}});
-
+                                                    console.log(2);
         user.friends.forEach(friend =>{
            usersId.push(friend.id);
         })
-
+console.log(3);  
         await User.updateMany({
             _id: {
                 $in: usersId
@@ -266,6 +266,8 @@ exports.addPost = async (id,post)=>{
         throw new Error(error);
     }
 }
+
+
 
 exports.getPosts = async (id) =>{
    try {
@@ -304,4 +306,3 @@ exports.deleteMessage = async ()=>{
         
     }
 }
-

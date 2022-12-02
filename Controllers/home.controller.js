@@ -69,9 +69,28 @@ exports.getpostImage = (req, res) => {
 
 }
 
+exports.getpostVideo = (req, res) => {
+    fs.readFile(
+        path.join(__dirname,'..','Assets','videos','posts',req.params.id),
+
+        function (err, image) {
+            if (err) {
+                throw err;
+            }
+           // console.log(image);
+           
+            res.setHeader('Content-Type', 'video/mp4');
+            res.setHeader('Content-Length', ''); // Image size here
+            res.setHeader('Access-Control-Allow-Origin', '*'); // If needs to be public
+            res.send(image);
+        }
+    );
+
+}
+
 exports.getuserImage = (req, res) => {
     fs.readFile(
-        path.join(__dirname,'..','Assets',req.params.id),
+        path.join(__dirname,'..','Assets','images','users',req.params.id),
 
         function (err, image) {
             if (err) {

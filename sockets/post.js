@@ -5,7 +5,7 @@ const path = require('path');
 module.exports = (io)=>{
  
     io.on('connect',socket =>{
-        socket.on('post',postData =>{
+        socket.on('postImage',postData =>{
             console.log(postData);
             const buffer = Buffer.from(postData.bytes);
 
@@ -25,6 +25,27 @@ module.exports = (io)=>{
                   
             })
         })   
+ 
+        socket.on('postVideo',postData =>{
+            console.log(2);
+            const buffer = Buffer.from(postData.bytes);
+
+            fs.writeFile(path.join(__dirname,'..','Assets','videos','posts',postData.filename), buffer,(err, result) => {
+                if(err) {
+                    console.log('error', err);
+                }else{
+                    addPost(postData.userId,postData).then((userId)=>{
+                        socket.emit('newPostVideo',postData);
+                       // socket.to(userId).emit('newPost',data); 
+            
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+                }
+                  
+            })
+        }) 
 
         socket.on('disconnect',()=>{
           console.log('a client disconnected');
