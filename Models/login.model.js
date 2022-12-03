@@ -33,3 +33,27 @@ exports.login = (data)=>{
         })
     })
 }
+
+exports.loginGoogle = (data)=>{  
+    
+    return new Promise((resolve,reject)=>{
+        mongoose.connect(`mongodb://${server}/${database}`)
+        .then(()=>{
+            return User.findOne({google: data.google})
+        })
+        .then((user)=>{
+            if(!user){
+                mongoose.disconnect();
+                reject("user is not exist");
+            }
+            
+            mongoose.disconnect()
+            resolve(user)
+           
+        })
+        .catch((err)=>{
+            mongoose.disconnect();
+            reject(err);
+        })
+    })
+}

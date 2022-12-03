@@ -1,4 +1,8 @@
 const loginModel = require('../Models/login.model');
+const passport = require("passport");
+const dotenv =  require("dotenv");
+const strategy = require("passport-facebook");
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 exports.getLogin = (req,res,next) => {
   

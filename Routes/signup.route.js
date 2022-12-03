@@ -20,6 +20,9 @@ route.get('/auth/google',authguard.noAuth,passport.authenticate('google', { scop
 route.get('/auth/google/callback',authguard.noAuth, 
         passport.authenticate('google', { failureRedirect: '/error' }),
         function(req, res) {
+            req.session.userId = String(req.user.id);
+            req.session.username = req.user.username;
+            req.session.photo = req.user.photo;
         // Successful authentication, redirect success.
         res.redirect('/');
     });

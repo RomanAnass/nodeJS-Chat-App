@@ -9,4 +9,5 @@ route.get('/',authguard.noAuth,loginController.getLogin);
 
 route.post('/',authguard.noAuth,bodyParser.urlencoded({extended : true}),loginController.postLogin);
 
+
 module.exports = route;

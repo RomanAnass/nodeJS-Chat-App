@@ -15,16 +15,17 @@ const UserSchema = new Schema({
     email: {
        type: String,
        required: true,
-       unique: true,
        lowercase: true,
        validate: (value) => {
        return validator.isEmail(value)
        }
     },
-    password: { type: String, required: true },
+    facebook: { type: String },
+    google: { type: String },
+    password: { type: String},
     phoneNumber : String,
     photo: { type: String, default: "default-user-image.png" },
-    date_naissance :{ type: Date, required: true },
+    date_naissance :{ type: Date},
     adresse: String,
     friendRequests: {
         type: [{id: String, friendname: String, friendphoto: String}],

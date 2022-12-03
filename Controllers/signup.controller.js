@@ -33,14 +33,21 @@ passport.use(
       function(accessToken, refreshToken, profile, done) {
         console.log(profile._json);
         const {id, name, picture } = profile._json;
-        const userData =
-        {id,
-          name,
-          picture};
-
-        //new userModel(userData).save();
-        signupModel.createNewUser(userData);
-        done(null, profile);
+        const newUser = {
+                facebook: profile.id,
+                fullname: profile.displayName,
+                firstname: profile.name.givenName,
+                lastname: profile.name.familyName,
+                email: profile.emails[0].value,
+                image: `https://graph.facebook.com/${profile.id}/picture?type=large`
+            }
+        console.log(profile.id);
+        signupModel.createNewUser_facebook(newUser).then(user =>{
+          return done(null, profile);
+        }).catch(err =>{
+            res.redirect('/signin')
+        });
+       
       }
 ));
 
@@ -51,8 +58,21 @@ passport.use(new GoogleStrategy({
 },
 function(accessToken, refreshToken, profile, done) {
     userProfile=profile;
-    signupModel.createNewUser(userProfile);
-    return done(null, userProfile);
+    const newUser = {
+                google: profile.id,
+                fullname: profile.displayName,
+                lastname: profile.name.familyName,
+                firstname: profile.name.givenName,
+                email: profile.emails[0].value,
+                image: profile.photos[0].value
+            }
+
+console.log("email : ",newUser);
+    signupModel.createNewUser_google(newUser).then(user =>{
+        return done(null,user); 
+    }).catch(err =>{
+      res.redirect('/signin')
+    })
 }
 ));
 

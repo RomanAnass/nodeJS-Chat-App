@@ -45,3 +45,75 @@ exports.createNewUser = data => {
          })
       })
 }
+
+exports.createNewUser_google = data => {
+   return new Promise((resolve,reject)=> {
+      mongoose.connect(`mongodb://${server}/${database}`)
+      .then(()=>{
+         return User.findOne({google: data.google})
+      })
+      .then(user =>{
+         if(user){
+            console.log(1);
+            mongoose.disconnect();
+            resolve(user)
+         }else{
+            let user = new User({
+               firstname: data.firstname,
+               lastname: data.lastname,
+               username: data.fullname,
+               email:  data.email,
+               photo: data.image,
+               google: data.google
+            });
+            return user.save();
+         }
+       }) 
+       .then(user =>{
+         mongoose.disconnect();
+         resolve(user);  
+       })
+      .catch(err =>{
+         console.log(err)
+         mongoose.disconnect();
+         reject(false);
+      })
+   })
+}
+
+exports.createNewUser_facebook = data => {
+   return new Promise((resolve,reject)=> {
+      mongoose.connect(`mongodb://${server}/${database}`)
+      .then(()=>{
+         return User.findOne({facebook: data.facebook})
+      })
+      .then(user =>{
+         if(user){
+            mongoose.disconnect();
+            reject("facebook is used")
+         }else{
+               //   console.log(data.day+ '-'+ data.month + '-'+ data.year);
+            console.log(data)
+            let user = new User({
+            firstname: data.firstname,
+            lastname: data.lastname,
+            username: data.fullname,
+            email:  data.email,
+            photo: data.image,
+            facebook: data.facebook
+            });
+         
+            return user.save(); 
+         }
+       })
+      .then((user)=>{
+         mongoose.disconnect();
+         resolve(user);  
+      })
+      .catch(err =>{
+         console.log(err)
+         mongoose.disconnect();
+         reject(err);
+      })
+   })
+}
