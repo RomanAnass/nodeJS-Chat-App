@@ -12,7 +12,8 @@ module.exports = io => {
                 if(err) {
                     console.log('error', err);
                 }else{
-                    updateprofilephoto(imageData.myId,imageData.Imagename)
+                    photo = "http//localhost:3000/userImage/images/users/"+imageData.Imagename;
+                    updateprofilephoto(imageData.myId,photo)
                     .then(()=>{
                          socket.emit('newprofilephoto',imageData.Imagename);
                     })

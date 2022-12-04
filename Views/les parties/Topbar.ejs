@@ -203,7 +203,7 @@
                       <li>
                           <div class="col-md-2 col-sm-2 col-xs-2">
                               <div class="notify-img"> 
-                                <a href="/profile/<%= notification.id %>" class="notification-user"><img src="/images/users/<%= notification.friendphoto %>"  alt="notification user image"></a>
+                                <a href="/profile/<%= notification.id %>" class="notification-user"><img src="<%= notification.friendphoto %>"  alt="notification user image"></a>
                               </div>
                           </div>
                           <div class="col-md-10 col-sm-10 col-xs-10">
@@ -247,7 +247,7 @@
           <li class="nav-item s-nav">
               <a href="/profile" class="nav-link nav-links">
                   <div class="menu-user-image">
-                      <img src="/images/users/<%= photo %>" id="photoprofile" class="menu-user-img ml-1" alt="Menu Image">
+                      <img src="<%= photo %>" id="photoprofile" class="menu-user-img ml-1" alt="Menu Image">
                   </div>
               </a>
           </li>

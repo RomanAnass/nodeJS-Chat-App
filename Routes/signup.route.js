@@ -25,6 +25,6 @@ route.get('/auth/google/callback',authguard.noAuth,
             req.session.photo = req.user.photo;
         // Successful authentication, redirect success.
         res.redirect('/');
-    });
+});
 
 module.exports = route;

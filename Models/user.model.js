@@ -24,7 +24,7 @@ const UserSchema = new Schema({
     google: { type: String },
     password: { type: String},
     phoneNumber : String,
-    photo: { type: String, default: "default-user-image.png" },
+    photo: { type: String, default: "http//localhost:3000/userImage/images/users/default-user-image.png" },
     date_naissance :{ type: Date},
     adresse: String,
     friendRequests: {
@@ -50,6 +50,7 @@ const UserSchema = new Schema({
         photo: String,
         caption: String,
         file: String,
+        typePost: String,
         createdAt: Number
     }],
     friendPosts: [{
@@ -58,6 +59,7 @@ const UserSchema = new Schema({
         photo: String, 
         caption: String,
         file: String,
+        typePost: String,
         createdAt: Number,
     }],
     newMessage: [{
@@ -244,8 +246,8 @@ exports.addPost = async (id,post)=>{
     try {
         let usersId = [];
         await mongoose.connect(`mongodb://${server}/${database}`);
-        const user = await User.findByIdAndUpdate(id,{$push: {friendPosts: {friendId: post.userId,name: post.username,photo: post.photo, caption: post.caption,file: post.filename, createdAt: Date.now()},
-                                                    myPosts: {id: post.userId,name: post.username,photo: post.photo, caption: post.caption,file: post.filename,createdAt: Date.now()}}});
+        const user = await User.findByIdAndUpdate(id,{$push: {friendPosts: {friendId: post.userId,name: post.username,photo: post.photo, caption: post.caption,file: post.filename,typePost: post.typePost, createdAt: Date.now()},
+                                                    myPosts: {id: post.userId,name: post.username,photo: post.photo, caption: post.caption,file: post.filename,typePost: post.typePost,createdAt: Date.now()}}});
                                                     console.log(2);
         user.friends.forEach(friend =>{
            usersId.push(friend.id);
@@ -257,7 +259,7 @@ console.log(3);
             }
         },
         {$push: {notifications: {id: post.userId, friendname: post.username, friendphoto: post.photo, Type: "post"},
-                friendPosts: {friendId: post.userId,name: post.username,photo: post.photo, caption: post.caption,file: post.filename, createdAt: Date.now()}}}
+                friendPosts: {friendId: post.userId,name: post.username,photo: post.photo, caption: post.caption,file: post.filename,typePost: post.typePost, createdAt: Date.now()}}}
         )
 
         mongoose.disconnect();

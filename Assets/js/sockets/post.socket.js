@@ -4,6 +4,7 @@ const userId     =  document.getElementById('userId').value;
 const content      =  document.getElementById('postForm');
 
 function sendNewPostVideo(){
+  
     const video = document.getElementById('fileVideo');
     const reader = new FileReader();
     const filename = video.files[0].name;
@@ -17,13 +18,16 @@ function sendNewPostVideo(){
             photo: photo,
             caption: content.value,
             bytes : bytes,
-            filename: filename
+            filename: filename,
+            typePost: "Video"
         })
         };
     reader.readAsArrayBuffer(video.files[0]);
+    
 }
 
 function sendNewPostImage(){
+
     const image = document.getElementById('fileImage');
     const reader = new FileReader();
     const filename = image.files[0].name;
@@ -37,10 +41,12 @@ function sendNewPostImage(){
             photo: photo,
             caption: content.value,
             bytes : bytes,
-            filename: filename
+            filename: filename,
+            typePost: "Photo"
         })
         };
     reader.readAsArrayBuffer(image.files[0]);
+    
 }
 
 function previewPostImage(self) {
@@ -90,7 +96,7 @@ socket.on('newPost',data=> {
 
     let html = "<div class='post border-bottom p-3 bg-white w-shadow'>";
         html += "<div class='media text-muted pt-3'>";
-        html += "<img src='http://localhost:3000/userImage"+ data.photo +"' alt='Online user' class='mr-3 post-user-image'>";
+        html += "<img src='"+ data.photo +"' alt='Online user' class='mr-3 post-user-image'>";
         html += "</div>";
         html += "<div/>";
         html += "<div class='media-body pb-3 mb-0 small lh-125'>";
@@ -181,7 +187,7 @@ socket.on('newPostVideo',data=> {
 
     let html = "<div class='post border-bottom p-3 bg-white w-shadow'>";
         html += "<div class='media text-muted pt-3'>";
-        html += "<img src='http://localhost:3000/userImage"+ data.photo +"' alt='Online user' class='mr-3 post-user-image'>";
+        html += "<img src='"+ data.photo +"' alt='Online user' class='mr-3 post-user-image'>";
         html += "</div>";
         html += "<div/>";
         html += "<div class='media-body pb-3 mb-0 small lh-125'>";

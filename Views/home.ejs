@@ -12,12 +12,12 @@
     filter: alpha(opacity=0);
     opacity: 0;
     position: absolute;
-    right: 0px;
     text-align: right;
     top: 0;
-    width: 100%;
+    width: 8%;
     overflow: hidden;
 }
+
 </style>
 <body class="newsfeed">
     <div class="container-fluid" id="wrapper">
@@ -60,7 +60,11 @@
                                             <button type="button" class="btn btn-link post-form-btn btn-sm">
                                                <span>Video</span>
                                                 <input type="file"  name="file" id="fileVideo" onchange="previewPostVideo(this);">
-                                            </button> 
+                                            </button>
+                                            <button type="button" class="btn btn-link post-form-btn btn-sm">
+                                                <span>Image</span>
+                                                <input type="file"  name="file" id="fileImage" onchange="previewPostImage(this);">
+                                             </button> 
                                             <button type="button" class="btn btn-link post-form-btn btn-sm">
                                                 <img src="/images/icons/theme/tag-friend.png" alt="post form icon"> <span>Tag Friends</span>
                                             </button>
@@ -144,8 +148,16 @@
                                     <p><%= post.caption %></p>
                                 </div>
                                 <div class="d-block mt-3">
-                                    <img src="images/posts/<%= post.file%>" class="post-content" alt="post image">
-                                </div>
+                                    <% if(post.typePost == "Photo"){ %>
+                                    <!-- <img src="images/posts/<%= post.file%>" class="post-content" alt="post image"> -->
+                                    <% } %>
+
+                                    <% if(post.typePost == "Video"){ %>
+                                    <video id='my_video_1' class='video-js vjs-default-skin post-content' width='640px' height='400px' controls preload='none' poster='https://scontent.fevn1-2.fna.fbcdn.net/v/t1.0-9/53323455_587990788367325_4529827897430507520_n.jpg?_nc_cat=100&_nc_eui2=AeF-F6s-7bevnyjZs6JbGj3WPqHUIRKQ4uJ2vH8L-OD-3KZPZFJ7GVOVSYewqLB1928c3NeJ-OWQgN9et1oxB4kpONH0rFMSpp1H-lfjwH2tzA&_nc_ht=scontent.fevn1-2.fna&oh=ab0d869caefae1260b3ff755e2e031ba&oe=5D07FF32' data-setup="{ 'aspectRatio':'640:400', 'playbackRates': [1, 1.5, 2] }" >
+                                     <source src='http://localhost:3000/postVideo/<%= post.file %>' type='video/mp4' />
+                                    </video> 
+                                    <% } %>                            
+                                    </div>
                                 <div class="mb-3">
                                     <!-- Reactions -->
                                     <div class="argon-reaction">

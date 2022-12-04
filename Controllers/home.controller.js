@@ -6,6 +6,7 @@ const path = require('path');
 exports.getHome = (req,res,next) => {
     UserModal.getPosts(req.session.userId)
     .then(posts =>{
+        console.log(posts);
         res.render('home',{
             pageTitle : 'Home',
             IsUser: req.session.userId,
@@ -16,7 +17,6 @@ exports.getHome = (req,res,next) => {
             photo: req.session.photo,
             email: req.session.email, 
             notifications: req.notifications,
-            photo: req.session.photo,
             username: req.session.username,
             posts : posts  
            })

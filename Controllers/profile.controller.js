@@ -20,6 +20,7 @@ exports.getProfile = (req,res,next)=>{
          date_naissance: user.date_naissance,
          adresse:   user.adresse,
          phoneNumber: user.phoneNumber,
+         posts : user.myPosts, 
          isOwner: id === req.session.userId,
          isRequestSent: user.friendRequests.find(friend => friend.id === req.session.userId),
          isRequestRecieve: user.sentRequests.find(friend => friend.id === req.session.userId),

@@ -10,4 +10,5 @@ route.get('/postImage/:id',authguard.isAuth,homeControler.getpostImage);
 route.get('/postVideo/:id',authguard.isAuth,homeControler.getpostVideo);
 route.get('/userImage/images/users/:id',authguard.isAuth,homeControler.getuserImage);
 
+
 module.exports = route;
