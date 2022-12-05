@@ -49,10 +49,10 @@
                                     <div class="form-group post-input">
                                         <textarea class="form-control" id="postForm" rows="2" placeholder="What's on your mind, Arthur?"></textarea>
                                     </div>
-                                    <div>
+                                    <div style="text-align: center;">
                                         <img id="post-img-preview" style="display: none;">
                                     </div>
-                                    <div>
+                                    <div style="text-align: center;">
                                         <video id="post-video-preview" controls style="display: none;"></video>
                                     </div>
                                     <div class="row post-form-group">
@@ -73,7 +73,7 @@
                                             </button>
                                         </div>
                                         <div class="col-md-3 text-right">
-                                            <button type="button" onclick="sendNewPostVideo()" class="btn btn-primary btn-sm">Publish</button>
+                                            <button type="button" onclick="sendNewPostImage()" class="btn btn-primary btn-sm">Publish</button>
                                         </div>
                                     </div>
                                 </div>
@@ -149,7 +149,7 @@
                                 </div>
                                 <div class="d-block mt-3">
                                     <% if(post.typePost == "Photo"){ %>
-                                    <!-- <img src="images/posts/<%= post.file%>" class="post-content" alt="post image"> -->
+                                     <img src="http://localhost:3000/postImage/<%= post.file%>" class="post-content" alt="post image" width='640px' height='400px'>  
                                     <% } %>
 
                                     <% if(post.typePost == "Video"){ %>

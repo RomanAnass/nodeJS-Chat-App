@@ -1,7 +1,7 @@
 
 document.getElementById('updateProfilePicInput').addEventListener('change', function() {
     
-
+   console.log(1)
     if (this.files[0].type && !this.files[0].type.startsWith('image/')) {
         console.log('File is not an image.', file.type, file);
         return;
@@ -34,7 +34,10 @@ socket.on('newprofilephoto',Imagename=>{
     //var img = new Image();
     const img = document.getElementById('Profileimage');
     const photo = document.getElementById('photoprofile');
-    console.log(Imagename);
+    console.log("image : ",Imagename);
+   // img.src = `http//localhost:3000/image/${Imagename}`;
+    //photo.src = `http//localhost:3000/image/${Imagename}`;
+
     img.src = `http://localhost:3000/image/${Imagename}`;
     photo.src = `http://localhost:3000/image/${Imagename}`;
 

@@ -10,9 +10,11 @@ exports.login = (data)=>{
     return new Promise((resolve,reject)=>{
         mongoose.connect(`mongodb://${server}/${database}`)
         .then(()=>{
+            console.log(data.email)
             return User.findOne({email: data.email})
         })
         .then((user)=>{
+            console.log(user)
             if(!user){
                 mongoose.disconnect();
                 reject("user is not exist");

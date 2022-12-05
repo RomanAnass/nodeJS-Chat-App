@@ -27,7 +27,7 @@ function sendNewPostVideo(){
 }
 
 function sendNewPostImage(){
-
+   
     const image = document.getElementById('fileImage');
     const reader = new FileReader();
     const filename = image.files[0].name;
@@ -88,12 +88,13 @@ function previewPostVideo(self) {
 socket.on('newPost',data=> {
     console.log(data.username);
     console.log(data.photo);
+    console.log(data.filename)
     content.value = "";
     document.getElementById("fileImage").value = "";
 
     document.getElementById("post-img-preview").style.display = "none";
     document.getElementById("post-video-preview").style.display = "none";
-
+    
     let html = "<div class='post border-bottom p-3 bg-white w-shadow'>";
         html += "<div class='media text-muted pt-3'>";
         html += "<img src='"+ data.photo +"' alt='Online user' class='mr-3 post-user-image'>";
@@ -119,7 +120,7 @@ socket.on('newPost',data=> {
         html += "<i class='bx bx-block post-option-icon'></i></div><div class='col-md-10'><span class='fs-9'>Report</span>";
         html += "<small id='reportPost' class='form-text text-muted'>I'm concerned about this post</small></div>";
         html += "</div></a></div></div></div><span class='d-block'>3 hours ago <i class='bx bx-globe ml-3'></i></span>";
-        html += "</div></div><div class='mt-3'><p>"+ data.caption+"</p></div><div class='d-block mt-3'><img src='http://localhost:3000/postImage/"+ data.filename +"' class='post-content' alt='post image'>";
+        html += "</div></div><div class='mt-3'><p>"+ data.caption+"</p></div><div class='d-block mt-3'><img src='http://localhost:3000/postImage/"+ data.filename +"' class='post-content'  alt='post image'>";
         html += "</div><div class='mb-3'>";
         html += "<!-- Reactions -->";
         html += "<div class='argon-reaction'><span class='like-btn'><a href='#' class='post-card-buttons' id='reactions'><i class='bx bxs-like mr-2'></i> 67</a>";
@@ -212,7 +213,7 @@ socket.on('newPostVideo',data=> {
         html += "</div></a></div></div></div><span class='d-block'>3 hours ago <i class='bx bx-globe ml-3'></i></span>";
         html += "</div></div><div class='mt-3'><p>"+ data.caption+"</p></div>";
         html += "<div class='d-block mt-3'>";
-        html += "<video id='my_video_1' class='video-js vjs-default-skin post-content' width='640px' height='400px' controls preload='none' poster='https://scontent.fevn1-2.fna.fbcdn.net/v/t1.0-9/53323455_587990788367325_4529827897430507520_n.jpg?_nc_cat=100&_nc_eui2=AeF-F6s-7bevnyjZs6JbGj3WPqHUIRKQ4uJ2vH8L-OD-3KZPZFJ7GVOVSYewqLB1928c3NeJ-OWQgN9et1oxB4kpONH0rFMSpp1H-lfjwH2tzA&_nc_ht=scontent.fevn1-2.fna&oh=ab0d869caefae1260b3ff755e2e031ba&oe=5D07FF32' data-setup='{ 'aspectRatio':'640:400', 'playbackRates': [1, 1.5, 2] }'>"; 
+        html += "<video id='my_video_1' class='video-js vjs-default-skin post-content' width='640px' height='380px' controls preload='none' poster='https://scontent.fevn1-2.fna.fbcdn.net/v/t1.0-9/53323455_587990788367325_4529827897430507520_n.jpg?_nc_cat=100&_nc_eui2=AeF-F6s-7bevnyjZs6JbGj3WPqHUIRKQ4uJ2vH8L-OD-3KZPZFJ7GVOVSYewqLB1928c3NeJ-OWQgN9et1oxB4kpONH0rFMSpp1H-lfjwH2tzA&_nc_ht=scontent.fevn1-2.fna&oh=ab0d869caefae1260b3ff755e2e031ba&oe=5D07FF32' data-setup='{ 'aspectRatio':'640:400', 'playbackRates': [1, 1.5, 2] }'>"; 
         html += "<source src='http://localhost:3000/postVideo/"+ data.filename +"' type='video/mp4' />"; 
         html += "</video></div>";
         html += "<div class='mb-3'>";

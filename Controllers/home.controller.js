@@ -14,7 +14,7 @@ exports.getHome = (req,res,next) => {
             lastname: req.session.lastname,
             friendRequests: req.friendRequests,
             date_naissance: req.session.date_naissance,
-            photo: req.session.photo,
+            myphoto: req.session.photo,
             email: req.session.email, 
             notifications: req.notifications,
             username: req.session.username,
@@ -32,6 +32,7 @@ exports.getHome = (req,res,next) => {
 
 
 exports.getImage = (req, res) => {
+    console.log(333)
     fs.readFile(
         path.join(__dirname,'..','Assets','images','users',req.params.id),
 
@@ -89,6 +90,7 @@ exports.getpostVideo = (req, res) => {
 }
 
 exports.getuserImage = (req, res) => {
+    console.log(333)
     fs.readFile(
         path.join(__dirname,'..','Assets','images','users',req.params.id),
 

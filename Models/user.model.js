@@ -24,7 +24,7 @@ const UserSchema = new Schema({
     google: { type: String },
     password: { type: String},
     phoneNumber : String,
-    photo: { type: String, default: "http//localhost:3000/userImage/images/users/default-user-image.png" },
+    photo: { type: String, default: `http://localhost:3000/image/default-user-image.png`},
     date_naissance :{ type: Date},
     adresse: String,
     friendRequests: {

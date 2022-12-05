@@ -12,10 +12,13 @@ module.exports = io => {
                 if(err) {
                     console.log('error', err);
                 }else{
-                    photo = "http//localhost:3000/userImage/images/users/"+imageData.Imagename;
+                   // photo = "http//localhost:3000/userImage/images/users/"+imageData.Imagename;
+                    photo = `http://localhost:3000/image/${imageData.Imagename}`;
                     updateprofilephoto(imageData.myId,photo)
                     .then(()=>{
+                        console.log('1 : ',imageData.Imagename)
                          socket.emit('newprofilephoto',imageData.Imagename);
+                         console.log('2 : ',imageData.Imagename)
                     })
                     .catch((err)=>{
                         console.log(err);

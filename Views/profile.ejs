@@ -6,7 +6,7 @@
         width: 300px;
         object-fit: cover;
     }
-    input[type=file] {
+    #fileImage, #fileVideo{
     cursor: pointer;    
     display: block;
     filter: alpha(opacity=0);
@@ -20,11 +20,11 @@
 
 </style>
 <body class="profile">
-    <div class="container-fluid newsfeed d-flex" id="wrapper">
+    <div class="container-fluid" id="wrapper">
         <div class="row newsfeed-size">
             <div class="col-md-12 p-0">
                 <%- include('les parties/Topbar') -%>
-                <div class="row profile-right-side-content">
+                <div class="row profile-right-side-content" style="width: 100%;">
                     <div class="user-profile">
                         <div class="profile-header-background">
                             <a href="#" class="profile-cover">
@@ -280,7 +280,7 @@
                                                     </div>
                                                     <div class="d-block mt-3">
                                                         <% if(post.typePost == "Photo"){ %>
-                                                        <!-- <img src="images/posts/<%= post.file%>" class="post-content" alt="post image"> -->
+                                                         <img src="http://localhost:3000/postImage/<%= post.file%>" class="post-content" width='640px' height='400px' alt="post image"> 
                                                         <% } %>
                     
                                                         <% if(post.typePost == "Video"){ %>
