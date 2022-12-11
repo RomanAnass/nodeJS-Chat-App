@@ -1,0 +1,6 @@
+*.html linguist-detectable=true
+*.bootstrap linguist-detectable=true
+*.javascript linguist-detectable=true
+*.nodejs linguist-detectable=true
+*.expressjs linguist-detectable=true
+*.mongoosejs linguist-detectable=true
